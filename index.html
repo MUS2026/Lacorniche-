@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>La Corniche SARL – Abomey-Calavi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --orange: #E07B00;
+      --orange-light: #F5A623;
+      --orange-dark: #B85F00;
+      --bg: #0E0A04;
+      --bg2: #1A1208;
+      --bg3: #231808;
+      --text: #F5EFE6;
+      --text-muted: #A89070;
+      --border: rgba(224,123,0,0.18);
+    }
+
+```
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 4rem;
+  background: rgba(14,10,4,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: .8rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem; font-weight: 700;
+  color: var(--orange-light);
+  text-decoration: none;
+}
+.nav-logo svg { width: 38px; height: 38px; }
+.nav-links { display: flex; gap: 2.2rem; list-style: none; }
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: .9rem; font-weight: 500;
+  letter-spacing: .04em;
+  transition: color .25s;
+}
+.nav-links a:hover { color: var(--orange-light); }
+.nav-cta {
+  background: var(--orange);
+  color: #fff !important;
+  padding: .5rem 1.3rem;
+  border-radius: 50px;
+  font-weight: 600 !important;
+  transition: background .25s !important;
+}
+.nav-cta:hover { background: var(--orange-light) !important; color: #fff !important; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+#hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 20%, rgba(224,123,0,0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(180,90,0,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(224,123,0,0.12);
+  border: 1px solid rgba(224,123,0,0.3);
+  color: var(--orange-light);
+  font-size: .78rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .4rem 1.1rem; border-radius: 50px;
+  margin-bottom: 2rem;
+  animation: fadeUp .8s ease both;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 1.0;
+  margin-bottom: 1.5rem;
+  animation: fadeUp .9s .1s ease both;
+}
+.hero-title span {
+  background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: 1.1rem; color: var(--text-muted);
+  max-width: 560px; line-height: 1.7;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 1s .2s ease both;
+}
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  animation: fadeUp 1s .3s ease both;
+}
+.btn-primary {
+  background: var(--orange);
+  color: #fff;
+  padding: .85rem 2.2rem;
+  border-radius: 50px;
+  font-weight: 600; font-size: .95rem;
+  text-decoration: none;
+  transition: background .25s, transform .2s;
+}
+.btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+.btn-outline {
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  padding: .85rem 2.2rem;
+  border-radius: 50px;
+  font-weight: 500; font-size: .95rem;
+  text-decoration: none;
+  transition: border-color .25s, transform .2s;
+}
+.btn-outline:hover { border-color: var(--orange); color: var(--orange-light); transform: translateY(-2px); }
+
+/* décoration lignes diagonales */
+.hero-deco {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  opacity: .4;
+}
+
+/* ── SECTION COMMUNE ── */
+section { padding: 6rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-size: .75rem; font-weight: 600; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--orange);
+  margin-bottom: .8rem;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.section-desc {
+  color: var(--text-muted);
+  max-width: 540px;
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+/* ── SERVICES ── */
+#services { background: var(--bg2); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.service-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: border-color .3s, transform .3s;
+  position: relative; overflow: hidden;
+}
+.service-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-light));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s;
+}
+.service-card:hover { border-color: rgba(224,123,0,0.45); transform: translateY(-5px); }
+.service-card:hover::after { transform: scaleX(1); }
+.service-icon {
+  width: 52px; height: 52px;
+  background: rgba(224,123,0,0.12);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+}
+.service-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700;
+  margin-bottom: .6rem; color: var(--text);
+}
+.service-card p { color: var(--text-muted); font-size: .9rem; line-height: 1.65; }
+
+/* ── ABOUT ── */
+#about .about-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.about-visual {
+  position: relative;
+}
+.about-card-main {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+}
+/* logo SVG inline dans about */
+.logo-big svg { width: 120px; height: 120px; }
+.about-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-top: 1.5rem;
+}
+.stat {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+}
+.stat strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--orange-light);
+}
+.stat span { font-size: .78rem; color: var(--text-muted); }
+.about-text .section-desc { max-width: 100%; margin-bottom: 1.5rem; }
+.about-detail {
+  display: flex; align-items: flex-start; gap: .75rem;
+  margin-bottom: 1rem;
+}
+.about-detail .dot {
+  width: 8px; height: 8px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0; margin-top: .35rem;
+}
+.about-detail p { color: var(--text-muted); font-size: .92rem; line-height: 1.6; }
+
+/* ── DIRECTRICE ── */
+#directrice { background: var(--bg2); }
+.dir-card {
+  display: flex; align-items: center; gap: 3rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 3rem;
+  max-width: 780px;
+}
+.dir-avatar {
+  width: 100px; height: 100px; flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 700; color: #fff;
+}
+.dir-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700;
+}
+.dir-info .title-tag {
+  display: inline-block;
+  background: rgba(224,123,0,0.12);
+  color: var(--orange-light);
+  font-size: .78rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .25rem .8rem; border-radius: 50px;
+  margin: .5rem 0 .75rem;
+}
+.dir-info p { color: var(--text-muted); font-size: .95rem; line-height: 1.65; }
+
+/* ── CONTACT ── */
+#contact .contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+.contact-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  margin-bottom: 1.8rem;
+}
+.contact-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  background: rgba(224,123,0,0.12);
+  border: 1px solid rgba(224,123,0,0.2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+.contact-item strong { display: block; font-size: .78rem; color: var(--orange); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .2rem; }
+.contact-item span { color: var(--text); font-size: .97rem; }
+.contact-item a { color: var(--text); text-decoration: none; }
+.contact-item a:hover { color: var(--orange-light); }
+
+.contact-form {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+.contact-form h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; margin-bottom: 1.5rem;
+}
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { display: block; font-size: .82rem; color: var(--text-muted); margin-bottom: .4rem; font-weight: 500; }
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .75rem 1rem;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .93rem;
+  transition: border-color .25s;
+  outline: none;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: var(--orange); }
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-group select option { background: var(--bg3); }
+.btn-send {
+  width: 100%;
+  background: var(--orange);
+  color: #fff;
+  border: none; cursor: pointer;
+  padding: .9rem;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .97rem; font-weight: 600;
+  transition: background .25s;
+}
+.btn-send:hover { background: var(--orange-light); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700;
+  color: var(--orange-light);
+  margin-bottom: .5rem;
+}
+.footer-meta { color: var(--text-muted); font-size: .82rem; line-height: 1.8; }
+.footer-meta a { color: var(--text-muted); text-decoration: none; }
+.footer-meta a:hover { color: var(--orange-light); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  #about .about-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+  #contact .contact-grid { grid-template-columns: 1fr; }
+  .dir-card { flex-direction: column; text-align: center; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <a href="#hero" class="nav-logo">
+    <!-- Logo CO SVG inline -->
+    <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 10 A20 20 0 1 0 30 50" stroke="#E07B00" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <circle cx="70" cy="30" r="20" stroke="#E07B00" stroke-width="8" fill="none"/>
+      <circle cx="70" cy="30" r="7" fill="#E07B00"/>
+      <circle cx="30" cy="30" r="5" fill="#E07B00"/>
+    </svg>
+    La Corniche
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#directrice">Direction</a></li>
+    <li><a href="#contact" class="nav-cta">Nous contacter</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section id="hero">
+  <div class="hero-badge">
+    <span>⬡</span> Abomey-Calavi, Bénin
+  </div>
+  <h1 class="hero-title">
+    La Corniche<br/><span>SARL</span>
+  </h1>
+  <p class="hero-sub">
+    Votre partenaire multi-sectoriel au Bénin — BTP, carrière de sable, cave à vin, commerce général et prestations de services.
+  </p>
+  <div class="hero-actions">
+    <a href="#services" class="btn-primary">Nos activités</a>
+    <a href="#contact" class="btn-outline">Prendre contact</a>
+  </div>
+  <div class="hero-deco"></div>
+</section>
+
+<!-- SERVICES -->
+
+<section id="services">
+  <div class="container">
+    <p class="section-label">Ce que nous faisons</p>
+    <h2 class="section-title">Nos Domaines d'Activité</h2>
+    <p class="section-desc">La Corniche SARL intervient dans plusieurs secteurs stratégiques pour accompagner le développement du Bénin.</p>
+    <div class="services-grid">
+
+```
+  <div class="service-card">
+    <div class="service-icon">🏗️</div>
+    <h3>BTP</h3>
+    <p>Construction, travaux publics et génie civil. Nous prenons en charge vos projets de bâtiment et d'infrastructure avec expertise et rigueur.</p>
+  </div>
+
+  <div class="service-card">
+    <div class="service-icon">⛏️</div>
+    <h3>Carrière de Sable</h3>
+    <p>Extraction et fourniture de sable de qualité pour vos chantiers de construction et travaux publics dans la région d'Abomey-Calavi.</p>
+  </div>
+
+  <div class="service-card">
+    <div class="service-icon">🍷</div>
+    <h3>Cave à Vin</h3>
+    <p>Sélection et distribution de vins et boissons pour particuliers, restaurants et événements. Un service raffiné pour toutes les occasions.</p>
+  </div>
+
+  <div class="service-card">
+    <div class="service-icon">🛒</div>
+    <h3>Commerce Général</h3>
+    <p>Import, export et distribution de marchandises diverses. Une gamme élargie pour répondre aux besoins du marché local et régional.</p>
+  </div>
+
+  <div class="service-card">
+    <div class="service-icon">⚙️</div>
+    <h3>Prestations de Services</h3>
+    <p>Accompagnement, conseil et services divers pour particuliers et entreprises. Nous mettons notre expérience au service de vos projets.</p>
+  </div>
+
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+  <div class="container">
+    <div class="about-wrap">
+      <div class="about-visual">
+        <div class="about-card-main">
+          <div class="logo-big" style="margin-bottom:1rem;">
+            <svg viewBox="0 0 200 120" width="130" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 20 A35 35 0 1 0 55 100" stroke="#E07B00" stroke-width="13" fill="none" stroke-linecap="round"/>
+              <circle cx="140" cy="60" r="35" stroke="#E07B00" stroke-width="13" fill="none"/>
+              <circle cx="140" cy="60" r="13" fill="#E07B00"/>
+              <circle cx="55" cy="60" r="9" fill="#E07B00"/>
+            </svg>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--orange-light);margin-bottom:.3rem;">La Corniche SARL</div>
+          <div style="font-size:.8rem;color:var(--text-muted);">Abomey-Calavi, Bénin</div>
+          <div class="about-stats">
+            <div class="stat"><strong>5+</strong><span>Secteurs d'activité</span></div>
+            <div class="stat"><strong>2017</strong><span>Enregistrée</span></div>
+            <div class="stat"><strong>BOA</strong><span>Banque partenaire</span></div>
+            <div class="stat"><strong>RB/COT</strong><span>RCCM Cotonou</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="section-label">Notre identité</p>
+        <h2 class="section-title">Une entreprise solide au service du Bénin</h2>
+        <p class="section-desc">La Corniche SARL est une société béninoise multi-activités basée à Abomey-Calavi. Sous la direction de Mme Ginette Chabi, elle s'est imposée comme un acteur fiable dans le BTP, le commerce et les services.</p>
+        <div class="about-detail">
+          <div class="dot"></div>
+          <p>Entreprise légalement enregistrée au RCCM de Cotonou — RB/COT/17/B19106</p>
+        </div>
+        <div class="about-detail">
+          <div class="dot"></div>
+          <p>IFU : 3201710029670 — Structure transparente et formalisée</p>
+        </div>
+        <div class="about-detail">
+          <div class="dot"></div>
+          <p>Siège social : Quartier Akonville, Maison Chabi, Abomey-Calavi</p>
+        </div>
+        <div class="about-detail">
+          <div class="dot"></div>
+          <p>Partenaire bancaire : BOA Bénin — BIIC 0020877820136</p>
+        </div>
+        <a href="#contact" class="btn-primary" style="display:inline-block;margin-top:1.5rem;">Travailler avec nous</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTRICE -->
+
+<section id="directrice">
+  <div class="container">
+    <p class="section-label">La direction</p>
+    <h2 class="section-title" style="margin-bottom:2.5rem;">À la tête de La Corniche</h2>
+    <div class="dir-card">
+      <div class="dir-avatar">GC</div>
+      <div class="dir-info">
+        <h3>Ginette Chabi</h3>
+        <div class="title-tag">Directrice Générale</div>
+        <p>Mme Ginette Chabi pilote La Corniche SARL avec vision et détermination. Sous sa direction, la société développe ses activités dans plusieurs secteurs clés de l'économie béninoise, en s'appuyant sur des partenariats solides et une gestion rigoureuse.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Nous joindre</p>
+    <h2 class="section-title">Contact & Localisation</h2>
+    <div class="contact-grid">
+
+```
+  <div>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <strong>Adresse</strong>
+        <span>Calavi Qtier Akonville, Maison Chabi<br/>Abomey-Calavi, Bénin</span>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div>
+        <strong>Téléphone</strong>
+        <span><a href="tel:+22901954459">01 95 44 59 59</a></span>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <strong>Email</strong>
+        <span><a href="mailto:llaconiche.sarl@gmail.com">llaconiche.sarl@gmail.com</a></span>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">🏦</div>
+      <div>
+        <strong>Informations légales</strong>
+        <span>RCCM : RB/COT/17/B19106<br/>IFU : 3201710029670</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <h3>Envoyez-nous un message</h3>
+    <div class="form-group">
+      <label>Nom complet</label>
+      <input type="text" placeholder="Votre nom"/>
+    </div>
+    <div class="form-group">
+      <label>Email ou téléphone</label>
+      <input type="text" placeholder="contact@exemple.com"/>
+    </div>
+    <div class="form-group">
+      <label>Domaine d'intérêt</label>
+      <select>
+        <option value="">Sélectionnez un service</option>
+        <option>BTP</option>
+        <option>Carrière de sable</option>
+        <option>Cave à vin</option>
+        <option>Commerce général</option>
+        <option>Prestations de services</option>
+        <option>Autre</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea placeholder="Décrivez votre projet ou demande…"></textarea>
+    </div>
+    <button class="btn-send" onclick="alert('Merci ! Votre message a bien été envoyé. La Corniche SARL vous contactera rapidement.')">Envoyer le message</button>
+  </div>
+
+</div>
+```
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-logo">La Corniche SARL</div>
+  <p class="footer-meta">
+    Calavi Qtier Akonville, Maison Chabi — Abomey-Calavi, Bénin<br/>
+    <a href="tel:+22901954459">01 95 44 59 59</a> · <a href="mailto:llaconiche.sarl@gmail.com">llaconiche.sarl@gmail.com</a><br/><br/>
+    © 2026 La Corniche SARL — Tous droits réservés
+  </p>
+</footer>
+
+</body>
+</html>
